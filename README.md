@@ -46,6 +46,18 @@ Of course we’ll need the test suite to pass and have full coverage.
 
 ## Rules:
 
+#### Sonika's additions:
+
+What I used Claude for:
+
+1. Hitting home the test suite- making sure all bases are covered.
+2. Syntax- replaced googling for syntax with asking claude what was wrong with a line.
+3. Testing my thoughts against it: I wanted to use the grill-me skill that was suggested by Pete.
+4. Investigating errors: Claude is very useful in finding out why an error is popping up and from where
+5. Finding falls: Steps I might have missed, redundant code leftover from refactoring etc.
+
+#
+
 Use whatever tools and resources help you get the job done. That includes AI, documentation, Stack Overflow, or anything else. What matters is that you understand every line you submit. In the follow-up pairing session, we'll ask you to walk us through your code, explain your decisions, and make changes on the fly - without an AI in Agent mode. If you can't do that confidently, it will count against you. The goal isn't to catch you out, it's to understand how you think.
 
 ## Setup

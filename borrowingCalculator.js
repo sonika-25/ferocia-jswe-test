@@ -11,39 +11,24 @@
 
 // Global constant for mortgage simulation
 
-import getApiData from './api.js'
+const services = require('./services');
 
-const LOAN_TERM_MONTHS = 360; // 30 Years
+const LOAN_TERM_MONTHS = 360; // 30 Years in months
 const INTEREST_RATE = 7.0; // 7.0% baseline interest rate
 const ASSESSMENT_RATE_BUFFER = 3.0; // 3.0% buffer added to interest rates
 
-// Legacy placeholder functions to replace with API calls
-async function getTax(income) {
-    // REPLACE THIS
-    // Write your TAX API call code here.
-    const res = await getApiData (`api/tax?income=${income}`)
-    const tax = res?.tax ?? Math.round(income * 0.25)
-    return tax 
-}
 
-async function getHEM(income, dependents) {
-    // REPLACE THIS
-    // Write your HEM API call code here.
-    const res = await getApiData (`api/hem?income=${income}&dependents=${dependents}`)
-    const hem = res?.hem ?? (2000 + (dependents*400))
-    return hem
-}
 
 /**
  * Calculates the total borrowing power amount and the monthly repayment configuration
  */
 async function calculateBorrowingPower(income, dependents, expenses, creditLimits, annualAssessmentRate) {
     // 1. Calculate Net Monthly Income after tax deductions
-    const annualTax =await getTax(income);
+    const annualTax = await services.getTax(income);
     const netMonthlyIncome = (income - annualTax) / 12;
 
     // 2. Determine living expenses (User declared expenses vs HEM baseline, whichever is higher)
-    const baselineHEM = await getHEM(income, dependents);
+    const baselineHEM = await services.getHem(income, dependents);
     const totalLivingExpenses = Math.max(expenses, baselineHEM);
 
     // 3. Calculate credit card liability (~3% of total limits)
