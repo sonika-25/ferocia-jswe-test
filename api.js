@@ -14,7 +14,7 @@ async function getApiData (path){
         });
         if (!res.ok){
             const body = await res.json().catch (()=>null);
-            console.error(`API request failed due to - ${res.status}: ${body.error ?? 'unkonwn error'}`)
+            console.error(`API request failed due to - ${res.status}: ${body?.error ?? 'unkonwn error'}`)
             return null;
         }   
         return await res.json();

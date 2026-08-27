@@ -10,7 +10,7 @@
  */
 
 // Global constant for mortgage simulation
-
+/*
 const services = require('./services');
 
 const LOAN_TERM_MONTHS = 360; // 30 Years in months
@@ -21,7 +21,7 @@ const ASSESSMENT_RATE_BUFFER = 3.0; // 3.0% buffer added to interest rates
 
 /**
  * Calculates the total borrowing power amount and the monthly repayment configuration
- */
+ /*
 async function calculateBorrowingPower(income, dependents, expenses, creditLimits, annualAssessmentRate) {
     // 1. Calculate Net Monthly Income after tax deductions
     const annualTax = await services.getTax(income);
@@ -93,4 +93,4 @@ if (require.main === module) {
     runConsoleMode();
 }
 
-module.exports = { calculateBorrowingPower };
+module.exports = { calculateBorrowingPower };*/

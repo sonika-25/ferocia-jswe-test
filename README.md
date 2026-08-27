@@ -1,5 +1,11 @@
 # Borrowing Power Calculator
 
+#### Sonika's comments:
+
+I made a really rookie error and accidentall pushed my env and package-lock.json in the first git commit! Deleted it but thought I'd let you know as it's visible through the commit history
+
+#
+
 Hello and thanks so much for taking the time to do the Ferocia Junior Engineering Code Exercise.
 
 This borrowing power calculator written in Javascript was started by one of our juniors, Gen (her full name is “Gen A. Eye”), but she she went on leave before she could finish it…
@@ -37,6 +43,20 @@ http://localhost:3000/api/hem?income=[income]&dependents=[dependents]
 Both return JSON and require an authentication header with a valid PAT (Personal Access Token), see server.md for full documentation including the development PAT.
 
 ### Make it manageable
+
+#### Sonika's additions:
+
+Code was refactored using Factory/closure method. This may seem over the top for something this scale, but I wanted to build an architecture that would be scalable.
+
+1. One file for reaching the API and handling Auth
+
+2. One file for holding all the API calls
+
+3. One file for for all the logic and calculation relating to borrowing calculator
+
+4. And one client side (usually a big app that this calcualtor would be integrated into)
+
+#
 
 Gen planned to pull all the calculator functions into a class so she could extend it later, but we’ll leave it up to you to choose the approach (a well-formed class, an orchestrator function, a factory/closure pattern, or whatever)
 
