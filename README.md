@@ -1,10 +1,83 @@
 # Borrowing Power Calculator
 
-#### Sonika's comments:
+This repo was created for a test for Ferocia Junior SWE. It creates a mock borrowing returning a person's borrowing power from their inputs. Code was refactored using Factory/closure method. This may seem over the top for something this scale, but I wanted to build an architecture that would be scalable.
 
-I made a really rookie error and accidentall pushed my env and package-lock.json in the first git commit! Deleted it but thought I'd let you know as it's visible through the commit history
+**INPUTS:** Income, credit card limits, expenses, dependents.
+
+**OUTPUTS**: Max Loan Amount, Monthly Repayments.
+
+**STACK** : NodeJS, Javascript, Mocha, dotenv
+
+###### note: express/axios was not used to keep the project light, instead fetch was used to call the APIs.
+
+# Shape of project
+
+**server.js** - runs a mock API to give values for tax and HEM
+
+_Assumption_: The tax and hem data will be ideally coming from a pre-exisitng api route, not from the server.js in this file.
+Hence server has been left untouched except to make the port configurable and an export. An api.js was created that stores the base API route instead and can be easily swapped.
+
+**api.js** - connects to the API (server.js currently) using the Auth token
+
+**services.js**- Stores the api calls and returns the values required by borrowing.js to calculate borrowing power
+
+**borrowing.js**- creates a borrowing calcultor factory with injected dependencies (services, and config).
+
+**runConsole.js**- runs borrowing.js with user's inputs via console
+
+**test_calculator.js**- Testing file changed to suit the curret structure
+
+**env** - store the environment variables (currently the token and the API url).
+
+I made an error and accidentally pushed my env and package-lock.json in the first git commit. Deleted it but thought I'd let you know as it's visible through the commit history.
+
+## Setup
+
+Make sure you have Node.js installed.
+
+Install dependencies:
+
+```
+npm install
+```
+
+## Server
+
+You wil need to run the development API in it's own terminal window.
+(The server will be available at http://localhost:3000/).
+To start the server run the following command:
+
+```
+npm run api
+```
+
+Note: You can stop the server with Ctrl+C
+
+## Running
+
+Run the calculator with:
+
+```
+npm start
+```
+
+## Testing
+
+Run tests with:
+
+```
+npm test
+```
 
 #
+
+#
+
+#
+
+##### Old Readme Continues Below:
+
+# Borrowing Power Calculator
 
 Hello and thanks so much for taking the time to do the Ferocia Junior Engineering Code Exercise.
 
@@ -22,16 +95,6 @@ You can see our online borrowing power calculator (Gens project is simplified so
 
 ### Replace the two placeholder functions
 
-###### Sonika's additions:
-
-Code has been refactored to call the API instead.
-
-Assumption: The tax and hem data will be ideally coming from a pre-exisitng api route, not from the server.js in this file.
-
-Hence server has been left untouched. An api.js was created that stores the base API route instead and can be easily swapped.
-
-#
-
 The code needs to calculate tax on income and a HEM (Household Expense Measure) value.
 Currently this is performed by placeholder code in the following functions:
 getTax(income)
@@ -44,20 +107,6 @@ Both return JSON and require an authentication header with a valid PAT (Personal
 
 ### Make it manageable
 
-#### Sonika's additions:
-
-Code was refactored using Factory/closure method. This may seem over the top for something this scale, but I wanted to build an architecture that would be scalable.
-
-1. One file for reaching the API and handling Auth
-
-2. One file for holding all the API calls
-
-3. One file for for all the logic and calculation relating to borrowing calculator
-
-4. And one client side (usually a big app that this calcualtor would be integrated into)
-
-#
-
 Gen planned to pull all the calculator functions into a class so she could extend it later, but we’ll leave it up to you to choose the approach (a well-formed class, an orchestrator function, a factory/closure pattern, or whatever)
 
 ### Test coverage
@@ -65,18 +114,6 @@ Gen planned to pull all the calculator functions into a class so she could exten
 Of course we’ll need the test suite to pass and have full coverage.
 
 ## Rules:
-
-#### Sonika's additions:
-
-What I used Claude for:
-
-1. Hitting home the test suite- making sure all bases are covered.
-2. Syntax- replaced googling for syntax with asking claude what was wrong with a line.
-3. Testing my thoughts against it: I wanted to use the grill-me skill that was suggested by Pete.
-4. Investigating errors: Claude is very useful in finding out why an error is popping up and from where
-5. Finding falls: Steps I might have missed, redundant code leftover from refactoring etc.
-
-#
 
 Use whatever tools and resources help you get the job done. That includes AI, documentation, Stack Overflow, or anything else. What matters is that you understand every line you submit. In the follow-up pairing session, we'll ask you to walk us through your code, explain your decisions, and make changes on the fly - without an AI in Agent mode. If you can't do that confidently, it will count against you. The goal isn't to catch you out, it's to understand how you think.
 

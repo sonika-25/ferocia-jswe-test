@@ -7,7 +7,8 @@
 
 const http = require("http");
 
-const PORT = 3000;
+
+const PORT = process.env.PORT || 3000;
 const VALID_PAT = "pat_abcdefghijklmnopqrstuvwxyz0123456789";
 
 const HEM_MATRIX = {
@@ -152,6 +153,11 @@ const server = http.createServer((req, res) => {
 });
 
 
-server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/`);
-});
+
+if (require.main === module) {
+    server.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}/`);
+    });
+}
+
+module.exports = server;

@@ -4,7 +4,8 @@ If token rotates or APi gets deployed elsewhere, one place to chagne it.*/
 require("dotenv").config();
 
 const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3000';
-const API_TOKEN = process.env.API_TOKEN || 'pat_abcdefghijklmnopqrstuvwxyz0123456789';
+const API_TOKEN = process.env.API_TOKEN || 'pat_abcdefghijklmnopqrstuvwxyz0123456789'; //Fallback is the dev PAT from server.md
+
 
 //One secure pathway for API routing dealing with the auth
 async function getApiData (path){
@@ -14,7 +15,7 @@ async function getApiData (path){
         });
         if (!res.ok){
             const body = await res.json().catch (()=>null);
-            console.error(`API request failed due to - ${res.status}: ${body?.error ?? 'unkonwn error'}`)
+            console.error(`API request failed due to - ${res.status}: ${body?.error ?? 'unknown error'}`)
             return null;
         }   
         return await res.json();

@@ -1,16 +1,11 @@
 /**
  * Borrowing Power Calculator
  *
- * Gen's incomplete prototype.
+ * Sonika's complete prototype.
  * This currently calculates what a user can borrow over 30 years.
- * Currently this code uses placeholder methods for Tax and HEM values.
+ * This code uses API calls for Tax and HEM values.
  *
- * TODO: Refactor the code to pull Tax and HEM values from an API call.
- * A server.js has been provided to supply these values.
  */
-
-// Global constant for mortgage simulation
-
 const services = require('./services');
 const { createBorrowingCalculator } = require('./borrowing');
 
@@ -32,18 +27,25 @@ function runConsoleMode() {
             rl.question("Declared Monthly Expenses: $", (expenses) => {
                 rl.question("Total Credit Card Limits: $", async(creditLimits) => {
 
-                    const result = await calculator.calculate({
-                        income: parseFloat(income),
-                        dependents: parseInt(dependents),
-                        expenses: parseFloat(expenses),
-                        creditLimits: parseFloat(creditLimits)
-                    });
+                    try {
+                        const result = await calculator.calculate({
+                            income: parseFloat(income),
+                            dependents: parseInt(dependents),
+                            expenses: parseFloat(expenses),
+                            creditLimits: parseFloat(creditLimits)
+                        });
 
-                    console.log("\n--- Calculation Summary ---");
-                    console.log(`Maximum Borrowing Power at ${INTEREST_RATE}%: $${result.maxLoanAmount.toLocaleString()}`);
-                    console.log(`Assumed Monthly Mortgage Repayment: $${result.monthlyRepayment.toLocaleString()} over 30 years`);
+                        console.log("\n--- Calculation Summary ---");
+                        console.log(`Maximum Borrowing Power at ${INTEREST_RATE}%: $${result.maxLoanAmount.toLocaleString()}`);
+                        console.log(`Assumed Monthly Mortgage Repayment: $${result.monthlyRepayment.toLocaleString()} over 30 years`);
 
-                    rl.close();
+                    } catch (error) {
+                        console.error("\nError: Could not calculate");
+                        console.error(error.message);
+
+                    } finally {
+                        rl.close();
+                    }
                 });
             });
         }); 
